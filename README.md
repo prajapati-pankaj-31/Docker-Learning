@@ -6,3 +6,4 @@ A complete hands-on Docker learning repository covering Docker fundamentals, ima
 - [Chapter 02 - Hello World with Docker](02-hello-world/README.md)
 - [Chapter 03 - Docker Images](03-images/README.md)
 - [Chapter 04 - Docker Containers](04-containers/README.md)
+- [Chapter 05 - Docker with Node.js](05-docker-node/README.md)
