@@ -143,19 +143,5 @@ docker rm <container-name-or-id>
 ```
 Remove a container.
 
-## GitHub push steps
-```bash
-git init
-git add .
-git commit -m "Initial commit"
-git branch -M main
-git remote add origin <your-github-repo-url>
-git push -u origin main
-```
-Use these commands to initialize Git, add project files, commit changes, and push the repository to GitHub.
 
-## Notes
-- Do not add `node_modules` or temporary files to Git.
-- The `.gitignore` file keeps the repository clean.
-- This folder is ready to be pushed to GitHub.
 

@@ -1,0 +1,16 @@
+{
+  "name": "05-docker-node2",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "Pankaj Prajapati",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node main.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
