@@ -1,7 +1,7 @@
 # Chapter 05 - Docker Node 2
 
 ## Purpose
-This project helps you understand Docker Compose, Docker Hub image push/pull, multi-image handling, and port mapping.
+This project helps you understand Docker Compose, Docker Hub image push/pull, multi-service orchestration, environment variables, port mapping, and Docker image build optimization.
 
 ## Project structure
 - `docker-compose.yml` - Defines multiple services and their container configuration
@@ -11,9 +11,11 @@ This project helps you understand Docker Compose, Docker Hub image push/pull, mu
 
 ## What you will learn
 - How to pull and push images from Docker Hub
-- How to manage multiple images in one project
+- How to manage multiple services in one project
+- How to use environment variables inside containers
 - How to map container ports to host ports
-- How to run services using Docker Compose
+- How Docker Compose helps run multiple containers together
+- How build caching layers improve Docker image build speed
 
 ## Start the project
 ```bash
@@ -43,6 +45,53 @@ This project uses two services:
 
 This means the container port is exposed to the host machine so you can access it from your local system.
 
+## Environment variables
+Environment variables help configure containers without changing the code.
+
+Example:
+```yaml
+services:
+  postgres:
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: review
+      POSTGRES_PASSWORD: password
+```
+
+Use this when you want to keep sensitive values such as passwords or API keys out of your source code.
+
+## Services in Docker Compose
+A Compose file can define multiple services, where each service runs independently.
+
+Example:
+```yaml
+services:
+  postgres:
+    image: postgres
+
+  redis:
+    image: redis
+```
+
+Each service uses its own image and container, making it easy to run related applications together.
+
+## Docker build caching layers
+Docker builds images in layers. If a layer does not change, Docker can reuse it and make the build faster.
+
+Example:
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY . .
+```
+
+Why this is useful:
+- `COPY package*.json ./` and `RUN npm install` are cached when dependencies do not change
+- Later code changes do not require reinstalling packages every time
+- Build time becomes faster and more efficient
+
 ## Docker Hub workflow
 ### 1. Log in to Docker Hub
 ```bash
@@ -68,17 +117,31 @@ docker pull <your-dockerhub-username>/docker-node2:1.0
 ```
 Use this command to download the image from Docker Hub to your local machine.
 
-## Multi-image handling with Docker Compose
-You can define multiple services in one Compose file:
-```yaml
-services:
-  postgres:
-    image: postgres
-
-  redis:
-    image: redis
+## Useful Docker commands
+```bash
+docker images
 ```
-Each service uses its own image and runs in its own container.
+List all locally stored images.
+
+```bash
+docker ps
+```
+Show running containers.
+
+```bash
+docker ps -a
+```
+Show all containers, including stopped ones.
+
+```bash
+docker stop <container-name-or-id>
+```
+Stop a running container.
+
+```bash
+docker rm <container-name-or-id>
+```
+Remove a container.
 
 ## GitHub push steps
 ```bash
@@ -95,3 +158,4 @@ Use these commands to initialize Git, add project files, commit changes, and pus
 - Do not add `node_modules` or temporary files to Git.
 - The `.gitignore` file keeps the repository clean.
 - This folder is ready to be pushed to GitHub.
+
