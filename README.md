@@ -11,3 +11,4 @@ A complete hands-on Docker learning repository covering Docker fundamentals, ima
 - [Chapter 06 - Docker Volumes](06-volumes/README.md)
 - [Chapter 07 - Docker Networks](07-networks/README.md)
 - [Chapter 08 - Docker Compose](08-docker-compose/README.md)
+- [Chapter 09 - Node.js + MongoDB with Docker](09-node-mongodb/README.md)
